@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request, redirect
+from flask import Flask, render_template, request
 from models import *
 from werkzeug.utils import secure_filename
 folder_name="static"
