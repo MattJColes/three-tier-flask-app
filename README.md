@@ -7,11 +7,14 @@
 * Postgre instance (am using 13.3)
 
 ### To install:
-* Download this repository and navigate to the downloaded project folder within your terminal of choice.
-
 * If using AWS EC2 the following commands will help get started first (not needed when developing locally):
 ``` bash
-sudo apt-get update && sudo yum install libpq-dev python-dev && sudo yum install postgresql-devel && sudo install git && sudo pip install psycopg2
+sudo yum install postgresql-devel && sudo yum install git
+```
+
+* Download this repository and navigate to the downloaded project folder within your terminal of choice.
+``` bash
+git clone https://github.com/MattJColes/three-tier-flask-app.git && cd three-tier-flask-app
 ```
 
 * Create a virtual environment within your project folder (Mac you'll need to use python3 instead of python):
