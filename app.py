@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 folder_name="static"
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://_YOUR_DB_USER_:_YOUR_DB_URL_:5432/_YOUR_DB_NAME_"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://_YOUR_DB_USER_:_YOUR_DB_PASS_@_YOUR_DB_URL_:5432/_YOUR_DB_NAME_"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
