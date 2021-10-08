@@ -11,7 +11,7 @@
 
 * If using AWS EC2 the following commands will help get started first (not needed when developing locally):
 ``` bash
-sudo apt-get update && sudo yum install libpq-dev python-dev && sudo yum install postgresql-devel && sudo pip install psycopg2
+sudo apt-get update && sudo yum install libpq-dev python-dev && sudo yum install postgresql-devel && sudo install git && sudo pip install psycopg2
 ```
 
 * Create a virtual environment within your project folder (Mac you'll need to use python3 instead of python):
