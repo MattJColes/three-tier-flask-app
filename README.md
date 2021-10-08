@@ -1,58 +1,34 @@
+# Simple 3 Tier Contact Form App
 
-# Welcome to your CDK Python project!
+### Prerequsites:
+* Python 3.8 installed
+* IDE / Text Editor of your choosing
+* Terminal / Command Prompt / Powershell
 
-This is a blank project for Python development with CDK.
-
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
-
-This project is set up like a standard Python project.  The initialization
-process also creates a virtualenv within this project, stored under the `.venv`
-directory.  To create the virtualenv it assumes that there is a `python3`
-(or `python` for Windows) executable in your path with access to the `venv`
-package. If for any reason the automatic creation of the virtualenv fails,
-you can create the virtualenv manually.
-
-To manually create a virtualenv on MacOS and Linux:
-
+### To install:
+* Download this repository and navigate to the downloaded project folder within your terminal of choice.
+* Create a virtual environment within your project folder (note some systems you'll need to use python3 instead):
+``` bash
+python -m venv venv
+.\venv\Scripts\activate
 ```
-$ python -m venv .venv
-```
-
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
-
-```
-$ source .venv/bin/activate
+* Install any extra dependancies (note again some systems you'll need to use pip3 instead):
+``` bash
+pip install -r requirements.txt
 ```
 
-If you are a Windows platform, you would activate the virtualenv like this:
-
-```
-% .venv\Scripts\activate.bat
-```
-
-Once the virtualenv is activated, you can install the required dependencies.
-
-```
-$ pip install -r requirements.txt
+* Within app.py update the following string (on line 7) with your postgres database details:
+``` bash
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://_YOUR_DB_USER_:_YOUR_DB_URL_:5432/_YOUR_DB_NAME_"
 ```
 
-At this point you can now synthesize the CloudFormation template for this code.
-
+### Now you can run locally
+* Run the following command in terminal to deploy locally on your computer: 
+``` bash
+python wsgi.py
 ```
-$ cdk synth
+
+* Or on a server...
+``` bash
+gunicorn --bind 0.0.0.0:8080 wsgi:app
 ```
-
-To add additional dependencies, for example other CDK libraries, just add
-them to your `setup.py` file and rerun the `pip install -r requirements.txt`
-command.
-
-## Useful commands
-
- * `cdk ls`          list all stacks in the app
- * `cdk synth`       emits the synthesized CloudFormation template
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk docs`        open CDK documentation
-
-Enjoy!

@@ -1,34 +1,46 @@
-#!/usr/bin/env python3
-import os
+from flask import Flask, render_template, jsonify, request, redirect
+from models import *
+from werkzeug.utils import secure_filename
+folder_name="static"
 
-from aws_cdk import core as cdk
+app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://_YOUR_DB_USER_:_YOUR_DB_URL_:5432/_YOUR_DB_NAME_"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+app.config["TARGET_FOLDER"] = "images"
+db.init_app(app)
 
-# For consistency with TypeScript code, `cdk` is the preferred import name for
-# the CDK's core module.  The following line also imports it as `core` for use
-# with examples from the CDK Developer's Guide, which are in the process of
-# being updated to use `cdk`.  You may delete this import if you don't need it.
-from aws_cdk import core
-
-from three_tier_app.three_tier_app_stack import ThreeTierAppStack
-
-
-app = core.App()
-ThreeTierAppStack(app, "ThreeTierAppStack",
-    # If you don't specify 'env', this stack will be environment-agnostic.
-    # Account/Region-dependent features and context lookups will not work,
-    # but a single synthesized template can be deployed anywhere.
-
-    # Uncomment the next line to specialize this stack for the AWS Account
-    # and Region that are implied by the current CLI configuration.
-
-    #env=core.Environment(account=os.getenv('CDK_DEFAULT_ACCOUNT'), region=os.getenv('CDK_DEFAULT_REGION')),
-
-    # Uncomment the next line if you know exactly what Account and Region you
-    # want to deploy the stack to. */
-
-    #env=core.Environment(account='123456789012', region='us-east-1'),
-
-    # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
-    )
-
-app.synth()
+@app.route('/')
+@app.route("/", methods=["GET"])
+def index():
+    contList=Contacts.query.all()
+    cont=Contacts.query.first()
+    return render_template("index.html", cont=cont, contList=contList)
+    
+@app.route("/", methods=["POST"])
+def addcontact():
+    conid=0
+    #store values recieved from HTML form in local variables
+    fName=request.form.get("FirstName")
+    lName=request.form.get("LastName")
+    mName=request.form.get("MiddleName")
+    workCompany=request.form.get("WorkCompany")
+    jobTitle=request.form.get("WorkJobTitle")
+    mobile=request.form.get("Mobile")
+    homePhone=request.form.get("HomePhone")
+    workPhone=request.form.get("WorkPhone")
+    email=request.form.get("email")
+    #Pass on the local values to the corresponfding model
+    contact = Contacts( fName=fName, lName=lName,mName=mName,workCompany=workCompany, jobTitle=jobTitle,mobile=mobile, homePhone=homePhone,workPhone=workPhone,email=email)
+    db.session.add(contact)
+    db.session.commit()
+    cont=conid
+    contList=Contacts.query.all()
+    return render_template("index.html", cont=cont, contList=contList) 
+    
+@app.route("/showContact/<int:conid>")
+def showContact(conid):
+    # select row from contacts table for contact ID passed from main page
+    cont=Contacts.query.filter_by(contactID=conid).first()
+    return render_template("contact.html",cont=cont)
