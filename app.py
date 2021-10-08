@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from models import *
-from werkzeug.utils import secure_filename
+from random import randrange
+
 folder_name="static"
 
 app = Flask(__name__)
@@ -28,11 +29,9 @@ def addcontact():
     workCompany=request.form.get("WorkCompany")
     jobTitle=request.form.get("WorkJobTitle")
     mobile=request.form.get("Mobile")
-    homePhone=request.form.get("HomePhone")
-    workPhone=request.form.get("WorkPhone")
     email=request.form.get("email")
     #Pass on the local values to the corresponfding model
-    contact = Contacts( fName=fName, lName=lName,mName=mName,workCompany=workCompany, jobTitle=jobTitle,mobile=mobile, homePhone=homePhone,workPhone=workPhone,email=email)
+    contact = Contacts( fName=fName, lName=lName,mName=mName,workCompany=workCompany, jobTitle=jobTitle,mobile=mobile,email=email)
     db.session.add(contact)
     db.session.commit()
     cont=conid

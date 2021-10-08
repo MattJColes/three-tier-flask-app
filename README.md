@@ -17,9 +17,9 @@ sudo yum install postgresql-devel && sudo yum install git
 git clone https://github.com/MattJColes/three-tier-flask-app.git && cd three-tier-flask-app
 ```
 
-* Create a virtual environment within your project folder (Mac you'll need to use python3 instead of python):
+* Create a virtual environment within your project folder:
 ``` bash
-python -m venv venv
+python3 -m venv venv
 
 source ./venv/bin/activate
 // OR 
@@ -28,7 +28,7 @@ source ./venv/bin/activate
 
 * Install any extra dependancies (note again Mac you'll need to use pip3 instead):
 ``` bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 * Provision the database tables within your Postgres instance by running the following within your SQL editor:
@@ -41,8 +41,6 @@ CREATE TABLE public.contacts
     "mName" character varying(30) COLLATE pg_catalog."default",
     "workCompany" character varying(50) COLLATE pg_catalog."default",
     mobile character varying(20) COLLATE pg_catalog."default",
-    "homePhone" character varying(20) COLLATE pg_catalog."default",
-    "workPhone" character varying(20) COLLATE pg_catalog."default",
     email character varying(50) COLLATE pg_catalog."default",
     "jobTitle" character varying(50) COLLATE pg_catalog."default",
     CONSTRAINT contacts_pkey PRIMARY KEY ("contactID")
@@ -55,12 +53,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://_YOUR_DB_USER_:_YOUR_DB_PA
 ```
 
 ### Now you can run locally
-* Run the following command in terminal to deploy locally on your computer (python3 on Mac): 
+* Run the following command in terminal to run the app on port 8080: 
 ``` bash
-python wsgi.py
-```
-
-* Or on a server...
-``` bash
-gunicorn --bind 0.0.0.0:8080 wsgi:app
+python3 wsgi.py
 ```

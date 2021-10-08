@@ -11,7 +11,5 @@ class Contacts(db.Model):
     mName =db.Column(db.String, nullable=False)
     workCompany = db.Column(db.String, nullable=True)
     mobile =db.Column(db.String, nullable=False)
-    homePhone =db.Column(db.String, nullable=False)
-    workPhone =db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=True)
     jobTitle = db.Column(db.String, nullable=True) 
