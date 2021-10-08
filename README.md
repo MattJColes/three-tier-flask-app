@@ -48,7 +48,7 @@ CREATE TABLE public.contacts
 
 * Within app.py update the following string (on line 7) with your postgres database details:
 ``` bash
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://_YOUR_DB_USER_:_YOUR_DB_URL_:5432/_YOUR_DB_NAME_"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://_YOUR_DB_USER_:_YOUR_DB_PASS_@_YOUR_DB_URL_:5432/_YOUR_DB_NAME_"
 ```
 
 ### Now you can run locally
