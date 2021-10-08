@@ -8,17 +8,24 @@
 
 ### To install:
 * Download this repository and navigate to the downloaded project folder within your terminal of choice.
-* Create a virtual environment within your project folder (Windows you'll need to use python instead of python3):
-``` bash
-python3 -m venv venv
 
-source /venv/bin/activate
+* If using AWS EC2 the following commands will help get started first (not needed when developing locally):
+``` bash
+sudo apt-get update && sudo yum install libpq-dev python-dev && sudo yum install postgresql-devel && sudo pip install psycopg2
+```
+
+* Create a virtual environment within your project folder (Mac you'll need to use python3 instead of python):
+``` bash
+python -m venv venv
+
+source ./venv/bin/activate
 // OR 
 .\venv\Scripts\activate
 ```
-* Install any extra dependancies (note again Windows you'll need to use pip instead):
+
+* Install any extra dependancies (note again Mac you'll need to use pip3 instead):
 ``` bash
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 * Provision the database tables within your Postgres instance by running the following within your SQL editor:
@@ -45,9 +52,9 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://_YOUR_DB_USER_:_YOUR_DB_UR
 ```
 
 ### Now you can run locally
-* Run the following command in terminal to deploy locally on your computer: 
+* Run the following command in terminal to deploy locally on your computer (python3 on Mac): 
 ``` bash
-python3 wsgi.py
+python wsgi.py
 ```
 
 * Or on a server...
