@@ -33,7 +33,7 @@ pip3 install -r requirements.txt
 
 * Provision the database tables within your Postgres instance by running the following within your SQL editor:
 ``` bash
-CREATE TABLE public.contacts
+CREATE TABLE contacts
 (
     "contactID" SERIAL,
     "fName" character varying(30) COLLATE pg_catalog."default" NOT NULL,
