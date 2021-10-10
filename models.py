@@ -8,7 +8,6 @@ class Contacts(db.Model):
     contactID = db.Column(db.Integer, primary_key=True)
     fName =db.Column(db.String, nullable=False)
     lName =db.Column(db.String, nullable=False)
-    mName =db.Column(db.String, nullable=False)
     workCompany = db.Column(db.String, nullable=True)
     mobile =db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=True)
