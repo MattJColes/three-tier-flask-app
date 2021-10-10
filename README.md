@@ -22,7 +22,7 @@ git clone https://github.com/MattJColes/three-tier-flask-app.git && cd three-tie
 python3 -m venv venv
 
 source ./venv/bin/activate
-// OR 
+// OR FOR WINDOWS
 .\venv\Scripts\activate
 ```
 
@@ -38,11 +38,11 @@ CREATE TABLE public.contacts
     "contactID" SERIAL,
     "fName" character varying(30) COLLATE pg_catalog."default" NOT NULL,
     "lName" character varying(30) COLLATE pg_catalog."default",
-    "mName" character varying(30) COLLATE pg_catalog."default",
     "workCompany" character varying(50) COLLATE pg_catalog."default",
     mobile character varying(20) COLLATE pg_catalog."default",
     email character varying(50) COLLATE pg_catalog."default",
     "jobTitle" character varying(50) COLLATE pg_catalog."default",
+    "displayPhoto" character varying(50) COLLATE pg_catalog."default",
     CONSTRAINT contacts_pkey PRIMARY KEY ("contactID")
 )
 ```

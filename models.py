@@ -13,3 +13,4 @@ class Contacts(db.Model):
     mobile =db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=True)
     jobTitle = db.Column(db.String, nullable=True) 
+    displayPhoto = db.Column(db.String, nullable=True)

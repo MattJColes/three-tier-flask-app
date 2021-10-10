@@ -16,7 +16,8 @@
 	</TH>
 	<TR>
 	<TD></TD>
-	<TD>{{cont.fName}} {{cont.mName}} {{cont.lName}}</TD>
+	<TD><img src="{{url_for('static', filename=cont.displayPhoto)}}", width="150", height="150"></TD>
+	<TD>{{cont.fName}} {{cont.lName}}</TD>
 	<TD>{{cont.workCompany}}</TD>
 	<TD>{{cont.jobTitle}}</TD>
 	<TD><b>Mobile:</b>{{cont.mobile}}</TD>

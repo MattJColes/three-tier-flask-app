@@ -12,6 +12,32 @@ app.config["SESSION_TYPE"] = "filesystem"
 app.config["TARGET_FOLDER"] = "images"
 db.init_app(app)
 
+
+def returnRandomImage():
+    chooseNumberForImage = randrange(0, 9)
+    if chooseNumberForImage == 0:
+        return "fake-person-01.jpg"
+    elif chooseNumberForImage == 1:
+        return "fake-person-02.jpg"
+    elif chooseNumberForImage == 2:
+        return "fake-person-03.jpg"
+    elif chooseNumberForImage == 3:
+        return "fake-person-04.jpg"
+    elif chooseNumberForImage == 4:
+        return "fake-person-05.jpg"
+    elif chooseNumberForImage == 5:
+        return "fake-person-06.jpg"
+    elif chooseNumberForImage == 6:
+        return "fake-person-07.jpg"
+    elif chooseNumberForImage == 7:
+        return "fake-person-08.jpg"
+    elif chooseNumberForImage == 8:
+        return "fake-person-09.jpg"
+    elif chooseNumberForImage == 9:
+        return "fake-person-10.jpg"
+    else: return "fake-person-01.jpg"
+
+
 @app.route('/')
 @app.route("/", methods=["GET"])
 def index():
@@ -25,13 +51,13 @@ def addcontact():
     #store values recieved from HTML form in local variables
     fName=request.form.get("FirstName")
     lName=request.form.get("LastName")
-    mName=request.form.get("MiddleName")
     workCompany=request.form.get("WorkCompany")
     jobTitle=request.form.get("WorkJobTitle")
     mobile=request.form.get("Mobile")
     email=request.form.get("email")
+    displayPhoto=returnRandomImage()
     #Pass on the local values to the corresponfding model
-    contact = Contacts( fName=fName, lName=lName,mName=mName,workCompany=workCompany, jobTitle=jobTitle,mobile=mobile,email=email)
+    contact = Contacts( fName=fName, lName=lName,workCompany=workCompany, jobTitle=jobTitle,mobile=mobile,email=email,displayPhoto=displayPhoto)
     db.session.add(contact)
     db.session.commit()
     cont=conid
